@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keycode Keyboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <style>
         .sound-indicator {
             animation: pulse 1s infinite;
@@ -27,30 +27,46 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen w-full flex items-center justify-center">
-    <section class="w-9/12 mx-auto h-full flex flex-col items-center justify-center">
+<body class="flex justify-center items-center h-screen bg-gray-100">
+    <section class="w-8/12 mx-auto h-full flex flex-col items-center justify-center">
         <div id="main-container"
-            class="bg-white p-6 rounded-lg shadow-lg w-full md:w-8/12 lg:w-6/12 transition-transform duration-300 ease-in-out">
-            <h1 class="text-3xl font-bold mb-4 text-gray-800">Keycode Keyboard</h1>
+            class=" container bg-white py-6 px-10  rounded-lg shadow-lg w-full transition-transform duration-300 ease-in-out">
+            <div class="flex items-center justify-between gap-10">
+                <h1 class="text-3xl font-bold mb-4 text-gray-800">
+                    Keycode Keyboard
+                </h1>
+                <div class="mb-4 flex items-center">
+                    <span id="soundIndicator" class="text-gray-500 text-2xl">🔊</span>
+                    <button id="toggleSound"
+                        class="ml-4 bg-gray-300 text-gray-800 py-1 px-3 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">Mute</button>
+                </div>
+            </div>
             <div class="mb-4">
-                <p class="text-xl mb-2">Pressed Key: <span id="key" class="font-semibold text-blue-500">None</span></p>
-                <p class="text-xl mb-2">Key Code: <span id="keyCode" class="font-semibold text-green-500">None</span>
+                <p class="text-xl mb-2 flex gap-2">
+                    <span>Pressed Key :</span>
+                    <span id="key" class="font-semibold text-blue-500 ml-2">None</span>
                 </p>
-                <p class="text-xl mb-2">Key History: <span id="keyHistory"
-                        class="font-semibold text-purple-500">None</span></p>
+                <p class="text-xl mb-2 flex gap-2">
+                    <span>Key Code:</span>
+                    <span id="keyCode" class="font-semibold text-green-500 ml-2">None</span>
+                </p>
+                <p class="text-xl mb-2 flex gap-2">
+                    <span>Key History:</span>
+                    <span id="keyHistory" class="font-semibold text-purple-500 w-8/12  flex flex-wrap">None</span>
+                </p>
+
+            </div>
+            <div class=" flex flex-col items-center justify-center gap-5">
                 <button id="clearHistory"
-                    class="mt-2 bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Clear
-                    History</button>
-            </div>
-            <div class="mb-4">
-                <p class="text-xl mb-2">Press Count: <span id="pressCount" class="font-semibold text-red-500">0</span>
+                    class="mt-2 bg-blue-500 w-11/12 text-white py-1 px-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Clear History
+                </button>
+                <p class="text-xl mb-2 flex gap-2">
+                    <span>Press Count:</span>
+                    <span id="pressCount" class="font-semibold text-red-500">0</span>
                 </p>
             </div>
-            <div class="mb-4 flex items-center">
-                <span id="soundIndicator" class="text-gray-500 text-2xl">🔊</span>
-                <button id="toggleSound"
-                    class="ml-4 bg-gray-300 text-gray-800 py-1 px-3 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">Mute</button>
-            </div>
+
             <audio id="keypress-sound" src="keyPress.wav" preload="auto"></audio>
             <audio id="clearHistory-sound" src="garbage.wav" preload="auto"></audio>
         </div>
